@@ -1,9 +1,26 @@
 import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import axios from "axios";
-import { Question } from "./question";
+import { Question, MyButton } from "../common";
+
+import { makeStyles } from "@material-ui/core/styles";
+import { Typography, Button } from "@material-ui/core/";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+    },
+  },
+  btnContainer: {
+    textAlign: "center",
+    margin: "10px",
+  },
+}));
 
 export default function Survey(props) {
+  const classes = useStyles();
+
   //gets params from url.
   const {
     match: { params },
@@ -34,18 +51,14 @@ export default function Survey(props) {
 
   const handleOptions = async (q, a, e) => {
     let { questionAns } = { ...payload };
-    let newQnAns = [];
 
     if (questionAns.length > 0) {
       let existingQn = questionAns.find((x) => x.qid == q);
 
       //for existing question
       if (existingQn) {
-        //check if the option already exists
-        let answer = existingQn.ans.find((x) => x == a);
-
         //for existing answer if unchecked
-        if (answer) {
+        if (!e.target.checked) {
           removeAnswer(q, a, e);
         }
         //for new selected answer
@@ -113,11 +126,23 @@ export default function Survey(props) {
   };
 
   const handleSubmit = async (e) => {
-    console.log(payload);
-    //check if all the questions is answered.
-    //if not alert
-    //if yes save and redirect back to survey page
-    //history.push("/auth/login");
+    let totalQns = data.questions.length;
+    let qnsInPayload = payload.questionAns.length;
+
+    if (qnsInPayload < totalQns)
+      return alert("Please answer all the questions. 1");
+
+    //check the case where it can have all the questions but no answers selected.
+    let emptyResponse = payload.questionAns.find((x) => x.ans.length === 0);
+
+    if (emptyResponse) {
+      return alert("Please answer all the questions.!");
+    }
+
+    //make http post request
+    let response = await axios.post("/api/survey/submit", payload);
+    console.log(response);
+    alert(response.data.message);
   };
 
   return (
@@ -126,7 +151,7 @@ export default function Survey(props) {
         ""
       ) : (
         <div>
-          <h1>{data.name}</h1>
+          <Typography variant="h4">{data.name}</Typography>
           {data.questions.map((item, index) => (
             <Question
               key={index}
@@ -136,11 +161,11 @@ export default function Survey(props) {
             ></Question>
           ))}
 
-          <button onClick={handleSubmit}>Submit</button>
+          <div className={classes.btnContainer}>
+            <MyButton onClick={handleSubmit} color="primary" label="Submit" />
 
-          <Link to={`/`}>
-            <button>Back</button>
-          </Link>
+            <MyButton component={Link} to={`/`} label="Back" />
+          </div>
         </div>
       )}
     </>

@@ -4,20 +4,23 @@
     "questions": [
         {
             "id": "34",
+            "createdBy": "Andre Grid",
+            "createdDateTime": "Thur, 28 May 2020 09:30:00 GMT",
             "title": "What is the temp today?",
-            "subTitle": "Sent to meterology dept.",
+            "subTitle": "We need to send this to the Bureau of Meteorology.",
+            "questionType": 3,
             "options": [
                 {
                     "id": "1",
-                    "text": "10"
+                    "text": "10°"
                 },
                 {
                     "id": "2",
-                    "text": "20"
+                    "text": "20°"
                 },
                 {
                     "id": "3",
-                    "text": "30"
+                    "text": "30°"
                 }
             ]
         }

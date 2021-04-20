@@ -1,0 +1,68 @@
+{
+    "id": "3",
+    "name": "Survey 3",
+    "questions": [
+        {
+            "id": "100",
+            "createdBy": "Avishekh Bharati",
+            "createdDateTime": "Thur, 28 Mar 2021 09:30:00 GMT",
+            "title": "What is your favourite code editor?",
+            "subTitle": "Very important question.",
+            "questionType": 3,
+            "options": [
+                {
+                    "id": "1",
+                    "text": "MS Word"
+                },
+                {
+                    "id": "2",
+                    "text": "Powerpoint"
+                },
+                {
+                    "id": "3",
+                    "text": "MS Paint"
+                },
+                {
+                    "id": "4",
+                    "text": "All of above"
+                }
+            ]
+        },
+        {
+            "id": "101",
+            "createdBy": "Avishekh Bharati",
+            "createdDateTime": "Thur, 28 Mar 2021 09:30:00 GMT",
+            "title": "Are you a dog person or a cat person?",
+            "subTitle": "Seriously, choose one!",
+            "questionType": 3,
+            "options": [
+                {
+                    "id": "1",
+                    "text": "Cow"
+                },
+                {
+                    "id": "2",
+                    "text": "Horse"
+                }
+            ]
+        },
+        {
+            "id": "102",
+            "createdBy": "Avishekh Bharati",
+            "createdDateTime": "Thur, 28 Mar 2021 09:30:00 GMT",
+            "title": "Why did Adel cross the road?",
+            "subTitle": "",
+            "questionType": 3,
+            "options": [
+                {
+                    "id": "1",
+                    "text": "To say Hello form the other side."
+                },
+                {
+                    "id": "2",
+                    "text": "To say Hi from the other side."
+                }
+            ]
+        }
+    ]
+}
